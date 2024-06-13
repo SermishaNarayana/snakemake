@@ -814,7 +814,8 @@ def get_argument_parser(profiles=None):
 
     group_exec.add_argument(
         "--scheduler",
-        default="greedy" if recommended_lp_solver not in lp_solvers else "ilp",
+        # default="greedy" if recommended_lp_solver not in lp_solvers else "ilp",
+        default="greedy" if recommended_lp_solver not in ["COIN_CMD"] else "ilp",
         nargs="?",
         choices=["ilp", "greedy"],
         help=(
@@ -846,7 +847,8 @@ def get_argument_parser(profiles=None):
     group_exec.add_argument(
         "--scheduler-ilp-solver",
         default=recommended_lp_solver,
-        choices=lp_solvers,
+        # choices=lp_solvers,
+        choices=["ilp", "greedy"],
         help=("Specifies solver to be utilized when selecting ilp-scheduler."),
     )
     group_exec.add_argument(
